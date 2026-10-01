@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Talarico vs. Paxton: Texas Senate work-up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F3; --surface:#FFFFFF; --ink:#1A2124; --muted:#5A666B; --rule:#D0D8D6;
+  --accent:#1E4D5C; --earth:#9A5B22; --band:rgba(30,77,92,.09);
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Figtree", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121617; --surface:#1A2022; --ink:#E4E9E7; --muted:#9AA7AB; --rule:#2B3437;
+    --accent:#86BCCB; --earth:#D69A62; --band:rgba(134,188,203,.12);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121617; --surface:#1A2022; --ink:#E4E9E7; --muted:#9AA7AB; --rule:#2B3437;
+  --accent:#86BCCB; --earth:#D69A62; --band:rgba(134,188,203,.12);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:1.075rem;line-height:1.62;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+.wrap{max-width:62rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+.prose{max-width:40rem}
+h1,h2,h3,h4{font-weight:600;line-height:1.2;margin:0}
+h1{font-size:clamp(2.4rem,7vw,4.1rem);letter-spacing:-.02em}
+h1 .vs{font-style:italic;font-weight:400;color:var(--muted)}
+h2{font-size:1.75rem;margin:3.5rem 0 .6rem;padding-top:1.25rem;border-top:2px solid var(--ink)}
+h3{font-size:1.25rem;margin:1.75rem 0 .5rem}
+h4{font-size:1.08rem}
+p{margin:.6rem 0}
+.dek{font-size:1.2rem;color:var(--muted);margin:.8rem 0 0;max-width:40rem}
+.meta{font-family:var(--sans);font-size:.85rem;color:var(--muted);margin-top:1rem}
+.sans{font-family:var(--sans)}
+.small{font-size:.88rem}
+.muted{color:var(--muted)}
+.src{font-family:var(--sans);font-size:.78rem;white-space:nowrap}
+nav.toc{font-family:var(--sans);font-size:.92rem;margin:2rem 0 0;display:flex;flex-wrap:wrap;gap:.35rem 1.1rem}
+nav.toc a{text-decoration:none;border-bottom:1px solid var(--rule)}
+nav.toc a:hover{border-bottom-color:var(--accent)}
+
+/* Evidence marks: the one visual system that repeats */
+.ev{display:inline-block;font-family:var(--sans);font-size:.74rem;font-weight:600;line-height:1;padding:.32rem .5rem;border-radius:3px;vertical-align:.12em;white-space:nowrap}
+.ev-record{background:var(--ink);color:var(--paper);border:1.5px solid var(--ink)}
+.ev-reported{border:1.5px solid var(--ink);color:var(--ink)}
+.ev-disputed{border:1.5px dashed var(--muted);color:var(--muted)}
+.ev-interp{border:1.5px dotted var(--earth);color:var(--earth)}
+.legend{font-family:var(--sans);font-size:.85rem;display:grid;gap:.5rem;margin:1rem 0;padding:1rem;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
+.legend div{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap}
+
+/* Headline numbers */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin:1.5rem 0}
+.fact{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem}
+.fact .k{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
+.fact .v{font-size:1.35rem;font-weight:600;line-height:1.25;margin:.25rem 0}
+.fact p{font-size:.92rem;margin:.3rem 0 0}
+
+/* Poll strip */
+.polls{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem 1.2rem;margin:1.25rem 0;font-family:var(--sans)}
+.polls-head{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin:0 0 .4rem;padding-left:calc(min(15rem,38%) + .75rem)}
+.prow{display:grid;grid-template-columns:min(15rem,38%) 1fr;gap:.75rem;align-items:center;padding:.3rem 0;border-top:1px solid var(--rule)}
+.prow:first-of-type{border-top:0}
+.plabel{font-size:.84rem;line-height:1.25}
+.plabel b{font-weight:600}
+.plabel span{color:var(--muted)}
+.track{position:relative;height:1.5rem}
+.track::before{content:"";position:absolute;left:35%;right:35%;top:0;bottom:0;background:var(--band)}
+.track::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px solid var(--muted)}
+.dot{position:absolute;top:50%;width:.8rem;height:.8rem;margin:-.4rem 0 0 -.4rem;border-radius:50%;background:var(--ink)}
+.dval{position:absolute;top:50%;transform:translateY(-50%);font-size:.74rem;white-space:nowrap;color:var(--ink)}
+.axis{display:grid;grid-template-columns:min(15rem,38%) 1fr;gap:.75rem;font-size:.74rem;color:var(--muted);margin-top:.35rem}
+.axis .ticks{position:relative;height:1rem}
+.axis .ticks span{position:absolute;transform:translateX(-50%)}
+.polls .note{font-size:.8rem;color:var(--muted);margin:.8rem 0 0}
+@media (max-width:560px){
+  .prow,.axis{grid-template-columns:1fr}
+  .axis > div:first-child{display:none}
+  .polls-head{padding-left:0}
+}
+
+/* Two-candidate layouts */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:1rem 0}
+@media (max-width:720px){.pair{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:1.1rem 1.2rem}
+.card h3{margin-top:0}
+.card ul{margin:.4rem 0 .2rem;padding-left:1.1rem}
+.card li{margin:.45rem 0}
+.side-label{font-family:var(--sans);font-size:.82rem;font-weight:600;color:var(--muted);margin:1rem 0 .1rem}
+
+/* Issues */
+.issue{border-top:1px solid var(--rule);padding:1.1rem 0}
+.issue h3{margin:0 0 .6rem;font-size:1.15rem}
+.issue .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media (max-width:720px){.issue .cols{grid-template-columns:1fr;gap:.6rem}}
+.issue .who{font-family:var(--sans);font-size:.8rem;font-weight:600;color:var(--muted);display:block;margin-bottom:.15rem}
+.issue .cols p{margin:0;font-size:.98rem}
+.issue .gap{font-family:var(--sans);font-size:.85rem;color:var(--muted);margin:.6rem 0 0}
+
+/* Tensions */
+.tension{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--earth);border-radius:6px;padding:1rem 1.2rem;margin:1rem 0}
+.tension h4{margin:0 0 .45rem}
+.tension dl{margin:.6rem 0 0;display:grid;grid-template-columns:8.5rem 1fr;gap:.45rem 1rem;font-size:.97rem}
+.tension dt{font-family:var(--sans);font-size:.8rem;font-weight:600;color:var(--muted);padding-top:.2rem}
+.tension dd{margin:0}
+@media (max-width:560px){.tension dl{grid-template-columns:1fr;gap:.1rem}.tension dd{margin-bottom:.5rem}}
+
+/* Claims */
+.claims{width:100%;border-collapse:collapse;font-size:.95rem}
+.table-scroll{overflow-x:auto;margin:1rem 0}
+.claims th,.claims td{text-align:left;vertical-align:top;padding:.7rem .6rem;border-top:1px solid var(--rule)}
+.claims th{font-family:var(--sans);font-size:.8rem;color:var(--muted);font-weight:600;border-top:0}
+.verdict{font-family:var(--sans);font-weight:600;font-size:.85rem;white-space:nowrap}
+@media (max-width:640px){
+  .claims thead{display:none}
+  .claims tr{display:block;border-top:1px solid var(--rule);padding:.6rem 0}
+  .claims td{display:block;border:0;padding:.2rem 0}
+}
+
+.method{font-size:.97rem}
+.method ul{padding-left:1.1rem}
+.method li{margin:.4rem 0}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--sans);font-size:.82rem;color:var(--muted)}
+
+@media print{
+  :root{--paper:#fff;--surface:#fff}
+  body{font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  nav.toc{display:none}
+  h2{break-after:avoid}
+  .tension,.card,.issue,.fact{break-inside:avoid}
+  a{color:inherit}
+}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Talarico <span class="vs">vs.</span> Paxton</h1>
+  <p class="dek">Texas U.S. Senate, general election on November 3, 2026. An initial work-up: where the race stands, the case for and against each candidate, how they match up on the big issues, and where each is in tension with his own stated values.</p>
+  <p class="meta">Research current to September 28, 2026. Every material claim links to its source. Sourcing strength is marked; see the key below.</p>
+  <nav class="toc" aria-label="Sections">
+    <a href="#standing">Where it stands</a>
+    <a href="#candidates">The candidates</a>
+    <a href="#proscons">Case for and against</a>
+    <a href="#issues">The big issues</a>
+    <a href="#tensions">Tensions with stated values</a>
+    <a href="#claims">Campaign claims checked</a>
+    <a href="#method">What I did and didn't verify</a>
+  </nav>
+</header>
+
+<div class="legend" role="note" aria-label="Evidence key">
+  <div><span class="ev ev-record">On the record</span> A court judgment, filing, official poll topline, or the candidate's own recorded words.</div>
+  <div><span class="ev ev-reported">Reported</span> Established by named reporters from records or interviews, but not adjudicated by any court or ethics body.</div>
+  <div><span class="ev ev-disputed">Disputed</span> Single-sourced, denied, or resting on an account that can't be independently checked.</div>
+  <div><span class="ev ev-interp">Interpretive</span> The facts are solid; whether they amount to an inconsistency is a judgment call reasonable people make differently.</div>
+</div>
+
+<!-- ============================================================ -->
+<section id="standing">
+<h2>Where the race stands</h2>
+<div class="prose">
+<p>James Talarico (D), a four-term state representative from Austin, won the March 3 Democratic primary over U.S. Rep. Jasmine Crockett, <a class="src" href="https://austinpost.com/politics/2026/03/04/talarico-wins-texas-senate-primary">52.8% to 45.9%</a>. Ken Paxton (R), the three-term attorney general, finished narrowly behind Sen. John Cornyn in the March primary, then won the May 26 runoff with <a class="src" href="https://www.houstonpublicmedia.org/articles/news/politics/election-2026/2026/05/26/552722/paxton-cornyn-runoff-election-results-texas-senate-republican-primary/">63.8%</a> after Trump endorsed him the week before, calling him a "true MAGA warrior" <a class="src" href="https://www.pbs.org/newshour/politics/live-results-texas-midterm-primary-runoffs">PBS/AP</a>. Libertarian Ted Brown is also on the ballot.</p>
+<p>Context that cuts both ways: Republicans have not lost a statewide race in Texas in 32 years <a class="src" href="https://www.propublica.org/article/ken-paxton-senate-financial-disclosures-ethics-law">ProPublica/Texas Tribune</a>, yet the Cook Political Report rates this race a toss-up <a class="src" href="https://thehill.com/homenews/campaign/6101881-talarico-leads-paxton-texas-senate-poll/">The Hill</a>.</p>
+</div>
+
+<div class="facts">
+  <div class="fact">
+    <div class="k">Polling</div>
+    <div class="v">Talarico ahead in 8 of 9 recent public polls</div>
+    <p>Six of the nine are within 3 points. Treat it as close, not settled. <span class="ev ev-reported">Reported</span></p>
+  </div>
+  <div class="fact">
+    <div class="k">Money raised through June 30</div>
+    <div class="v">About $68.6M vs. $9.2M</div>
+    <p>Talarico's campaign vs. Paxton's committees. Outside Republican money is closing much of the gap. <span class="ev ev-reported">Reported</span></p>
+  </div>
+  <div class="fact">
+    <div class="k">"Honest and trustworthy" describes him well</div>
+    <div class="v">Talarico 46%, Paxton 33%</div>
+    <p>UT/Texas Politics Project, Aug. 5–13, registered voters. Checked against the poll's own topline. <span class="ev ev-record">On the record</span></p>
+  </div>
+</div>
+
+<div class="polls" role="figure" aria-label="Recent public polls, margin by candidate">
+  <div class="polls-head"><span>Talarico ahead</span><span>Tie</span><span>Paxton ahead</span></div>
+
+  <div class="prow"><div class="plabel"><b>Fox News</b> <span>reported Aug. 6</span></div><div class="track"><i class="dot" style="left:35%"></i><span class="dval" style="right:67.5%">T +3 (51–48)</span></div></div>
+  <div class="prow"><div class="plabel"><b>UT/Texas Politics Project</b> <span>Aug. 5–13, RV</span></div><div class="track"><i class="dot" style="left:35%"></i><span class="dval" style="right:67.5%">T +3 (42–39)</span></div></div>
+  <div class="prow"><div class="plabel"><b>Emerson/Nexstar</b> <span>Aug. 9–10</span></div><div class="track"><i class="dot" style="left:55%"></i><span class="dval" style="left:58.5%">P +1 (47–46)</span></div></div>
+  <div class="prow"><div class="plabel"><b>Texas Public Opinion Research</b> <span>Aug. 21–24</span></div><div class="track"><i class="dot" style="left:20%"></i><span class="dval" style="left:23.5%">T +6 (48–42)</span></div></div>
+  <div class="prow"><div class="plabel"><b>The Hill/Emerson</b> <span>Sept. 12–14</span></div><div class="track"><i class="dot" style="left:45%"></i><span class="dval" style="right:57.5%">T +1 (47–46)</span></div></div>
+  <div class="prow"><div class="plabel"><b>Texas Southern Univ.</b> <span>mid-Sept.</span></div><div class="track"><i class="dot" style="left:45%"></i><span class="dval" style="right:57.5%">T +1 (47–46)</span></div></div>
+  <div class="prow"><div class="plabel"><b>NBC 5/Telemundo</b> <span>Sept., RV</span></div><div class="track"><i class="dot" style="left:35%"></i><span class="dval" style="right:67.5%">T +3 (46–43)</span></div></div>
+  <div class="prow"><div class="plabel"><b>Marist</b> <span>Sept.</span></div><div class="track"><i class="dot" style="left:20%"></i><span class="dval" style="left:23.5%">T +6 (50–44)</span></div></div>
+  <div class="prow"><div class="plabel"><b>Texas Public Opinion Research</b> <span>Sept.</span></div><div class="track"><i class="dot" style="left:25%"></i><span class="dval" style="left:28.5%">T +5 (49–44)</span></div></div>
+
+  <div class="axis"><div></div><div class="ticks"><span style="left:0%">10</span><span style="left:25%">5</span><span style="left:50%">0</span><span style="left:75%">5</span><span style="left:100%">10</span></div></div>
+  <p class="note">Shaded band is ±3 points. Sources: <a href="https://www.foxnews.com/politics/fake-moderate-talarico-texas-surge-tests-paxton-fight-hold-crucial-gop-senate-seat">Fox News</a>, <a href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP topline</a>, <a href="https://emersoncollegepolling.com/texas-2026-poll-paxton-and-talarico/">Emerson release</a>, <a href="https://www.newsweek.com/talarico-suffers-double-poll-blow-as-texas-undecided-voters-decide-12492400">Newsweek (TPOR Aug.)</a>, <a href="https://thehill.com/homenews/state-watch/6093606-talarico-paxton-deadlock-texas-senate-poll/">The Hill/Emerson</a>, <a href="https://www.fox7austin.com/election/james-talarico-ken-paxton-texas-us-senate-tsu-poll">FOX 7 (TSU)</a>, <a href="https://thehill.com/homenews/campaign/6101881-talarico-leads-paxton-texas-senate-poll/">The Hill (NBC 5)</a>, <a href="https://thehill.com/homenews/campaign/6113603-talarico-leads-paxton-texas-senate/">The Hill (Marist, TPOR Sept.)</a>. Only the UT/TPP and Emerson numbers were read from the pollsters' own releases; the rest are as reported. I did not check sponsors or methods, and this is not a weighted average. For that, see the <a href="https://www.texastribune.org/2026/08/07/texas-us-senate-james-talarico-ken-paxton-polls/">Texas Tribune tracker</a>.</p>
+</div>
+
+<div class="prose">
+<h3>Money and outside spending</h3>
+<p>Through June 30, Talarico's committee had raised about $68.6 million and Paxton's two committees about $9.2 million, roughly 7 to 1 <a class="src" href="https://www.yahoo.com/news/politics/articles/ken-paxton-faces-money-crunch-180458806.html">per FEC filings as reported</a>. Cash on hand at that point is reported differently: $21.5 million in that account, $23.3 million in the <a class="src" href="https://www.texastribune.org/2026/07/20/texas-senate-talarico-paxton-fundraising-spending-money-donors/">Texas Tribune tracker</a>, against about $1.7 million for Paxton <a class="src" href="https://thetexan.news/elections/2026/heres-a-look-at-the-top-lines-from-texas-july-campaign-finance-reports/article_0bc50754-759d-4272-9aef-c12071072f46.html">The Texan</a>. I did not open the FEC filings to settle it.</p>
+<p>The gap narrows once outside money is counted. Paxton's campaign has received close to $54 million from the Senate Leadership Fund's Texas affiliate, and Trump's super PAC added $5 million <a class="src" href="https://thehill.com/homenews/campaign/6101881-talarico-leads-paxton-texas-senate-poll/">The Hill</a>. A Texas Tribune headline from Sept. 22 reports Senate Republicans raising their ad buy for Paxton to $100 million (headline only; I did not read the story). On the Democratic side, a Talarico-aligned super PAC, Lone Star Rising, had raised around $9 million by spring <a class="src" href="https://www.statesman.com/news/politics/state/article/james-talarico-us-senate-pac-billionaires-22235242.php">Statesman</a>, and Schumer's Senate Majority PAC has launched a Texas-focused PAC <a class="src" href="https://www.washingtonexaminer.com/news/campaigns/congressional/4744387/talarico-paxton-texas-senate-race-poll/">Washington Examiner</a>.</p>
+
+<h3>What voters say matters</h3>
+<p>In the UT/Texas Politics Project poll, Texas registered voters named inflation (19%) and political corruption or leadership (15%) as the state's top problems, ahead of the economy and immigration (10% each) <a class="src" href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">topline</a> <span class="ev ev-record">On the record</span>. That combination explains both campaigns' emphasis: cost of living from both sides, corruption from Talarico, and immigration and social issues from Paxton.</p>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<section id="candidates">
+<h2>The candidates</h2>
+<div class="pair">
+  <div class="card">
+    <h3>James Talarico (D)</h3>
+    <p>Former middle school teacher and seminarian, 36 at the time of the primary, who built a national profile pairing progressive policy with openly Christian language <a class="src" href="https://time.com/7382444/texas-senate-democratic-primary-result-talarico-crockett/">TIME</a>. First elected to the Texas House in 2018 by flipping a Republican seat <a class="src" href="https://www.yahoo.com/news/articles/james-talarico-enters-race-u-105034323.html">Nexstar</a>; named one of Texas Monthly's ten best legislators <a class="src" href="https://www.nbcdfw.com/news/politics/lone-star-politics/crockett-talarico-primary-election-result/3992027/">NBC 5</a>. Reported net worth $67,000–$305,000 <a class="src" href="https://www.propublica.org/article/ken-paxton-senate-financial-disclosures-ethics-law">ProPublica</a>.</p>
+  </div>
+  <div class="card">
+    <h3>Ken Paxton (R)</h3>
+    <p>Texas attorney general since 2015 after serving in the Legislature from 2003 <a class="src" href="https://www.propublica.org/article/ken-paxton-senate-financial-disclosures-ethics-law">ProPublica</a>. Built his profile as the leading state-level legal opponent of the Biden administration on immigration, abortion and gender policy <a class="src" href="https://www.pbs.org/newshour/politics/ken-paxton-has-survived-years-of-scandals-can-james-talarico-change-that">PBS/AP</a>. Impeached by the Texas House in 2023 and acquitted by the Senate; never convicted of anything. Reported net worth $1 million–$27 million <a class="src" href="https://www.propublica.org/article/ken-paxton-senate-financial-disclosures-ethics-law">ProPublica</a>.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<section id="proscons">
+<h2>The case for and against each</h2>
+<p class="prose muted small sans">These are the strongest arguments each side's supporters and critics make, with the evidence behind them where it exists. Listing an argument is not endorsing it.</p>
+
+<div class="pair">
+  <div class="card">
+    <h3>Talarico</h3>
+    <div class="side-label">Case for</div>
+    <ul>
+      <li><strong>Money and organization.</strong> His campaign reports over $70 million from 780,000 individual donors, a record second quarter <a class="src" href="https://www.texastribune.org/2026/07/08/texas-james-talarico-senate-fundraising-second-quarter-30-million/">Texas Tribune</a> (campaign-reported figures).</li>
+      <li><strong>Trust edge.</strong> 46% say "honest and trustworthy" describes him well, versus 33% for Paxton; his net favorability is +10 to Paxton's −13 <a class="src" href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP</a>.</li>
+      <li><strong>Clean finances.</strong> Modest, stable net worth and no legal cases against him.</li>
+      <li><strong>Crossover pitch.</strong> Calls himself a "border security Democrat," backs oil and gas jobs, and has drawn some Republican support <a class="src" href="https://www.dallasnews.com/news/politics/article/talarico-gains-gop-support-unveiling-22371785.php">Dallas Morning News</a>.</li>
+      <li><strong>Youth vote.</strong> Leads by 15 among voters under 50 in Emerson's August poll <a class="src" href="https://emersoncollegepolling.com/texas-2026-poll-paxton-and-talarico/">Emerson</a>.</li>
+    </ul>
+    <div class="side-label">Case against</div>
+    <ul>
+      <li><strong>Repositioning.</strong> Positions and tone on ICE, capitalism, fossil fuels and gender have shifted sharply since 2020 and since the primary; his campaign concedes some past remarks missed the mark. Critics call it a makeover (see Tensions).</li>
+      <li><strong>Money-in-politics message vs. practice.</strong> Runs against billionaire and dark money while a billionaire- and dark-money-funded super PAC works for him.</li>
+      <li><strong>His own voting-address problem</strong> undercuts his attack on Paxton over the same issue.</li>
+      <li><strong>Unpriced agenda.</strong> Minimum wage to $15, public option, expanded credits, with no full cost estimate (Paxton's plan has none either) <a class="src" href="https://www.fox26houston.com/election/talarico-vs-paxton-who-has-better-plan-lower-costs">FOX 26</a>.</li>
+      <li><strong>Structural headwinds.</strong> No Democrat has won statewide in 32 years; a large gender gap (56% of women vs. 36% of men in a June NYT/Siena poll) <a class="src" href="https://www.texastribune.org/2026/07/15/texas-ken-paxton-james-talarico-abortion/">The 19th/Texas Tribune</a>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Paxton</h3>
+    <div class="side-label">Case for</div>
+    <ul>
+      <li><strong>Base and Trump.</strong> Trump's endorsement and a 28-point runoff win over an incumbent senator <a class="src" href="https://www.brookings.edu/articles/paxtons-landslide-win-signals-end-of-bush-era-texas-gop/">Brookings</a>.</li>
+      <li><strong>A decade of conservative litigation.</strong> Suits against the Biden administration on immigration, abortion and gender policy; supporters see a fighter who delivers <a class="src" href="https://www.pbs.org/newshour/politics/ken-paxton-has-survived-years-of-scandals-can-james-talarico-change-that">PBS/AP</a>.</li>
+      <li><strong>Never convicted.</strong> Acquitted by the Texas Senate; federal prosecutors dropped their case; state securities charges dismissed after a pretrial agreement. Supporters frame the cases as political persecution.</li>
+      <li><strong>Concrete tax plan.</strong> Specific deduction amounts for medical costs and home buying, plus doubling the child tax credit <a class="src" href="https://www.fox26houston.com/election/talarico-vs-paxton-who-has-better-plan-lower-costs">FOX 26</a>.</li>
+      <li><strong>Texas fundamentals.</strong> Republicans hold 50% party ID to Democrats' 40% among registered voters, and Trump carried the sample's 2024 voters 47–36 <a class="src" href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP</a>.</li>
+    </ul>
+    <div class="side-label">Case against</div>
+    <ul>
+      <li><strong>Trust deficit.</strong> 41% of registered voters say "honest and trustworthy" describes him "not at all" <a class="src" href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP</a>.</li>
+      <li><strong>Accumulated ethics record.</strong> Impeachment, a nine-year securities case, a $6.6 million whistleblower judgment paid by taxpayers, questioned financial disclosures, and a questioned voting address (see Tensions).</li>
+      <li><strong>Party unity.</strong> 84% of Republicans back him vs. 99% of Democrats for Talarico in the TSU poll <a class="src" href="https://www.fox7austin.com/election/james-talarico-ken-paxton-texas-us-senate-tsu-poll">FOX 7</a>; Cornyn voters were the question from the start <a class="src" href="https://www.texastribune.org/2026/05/26/texas-john-cornyn-ken-paxton-us-senate-republican-primary-runoff/">Texas Tribune</a>.</li>
+      <li><strong>Health care exposure.</strong> Led the 2018 multistate suit to strike down the entire ACA, dismissed 7–2 for lack of standing <a class="src" href="https://www.texasstandard.org/?p=121020">Texas Standard</a>, in a state where 64% are very concerned about health costs <a class="src" href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP</a>.</li>
+      <li><strong>Dependence on outside money.</strong> Joint fundraising committees supplied about 45% of his haul vs. 8% of Talarico's <a class="src" href="https://www.texastribune.org/2026/07/20/texas-senate-talarico-paxton-fundraising-spending-money-donors/">Texas Tribune</a>.</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<section id="issues">
+<h2>How they match up on the big issues</h2>
+<p class="prose muted small sans">Positions as stated by the candidates or documented in their records. Where I could only find a position through a partisan outlet, that's noted.</p>
+
+<div class="issue">
+  <h3>Cost of living and taxes</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>A $15 federal minimum wage, a bigger child tax credit and EITC, and repeal of tariffs he says raise prices <a class="src" href="https://www.fox26houston.com/election/talarico-vs-paxton-who-has-better-plan-lower-costs">FOX 26</a>. Pays for it partly by repealing Republican tax cuts for the wealthy <a class="src" href="https://www.houstonpublicmedia.org/articles/news/politics/election-2026/2026/08/06/558737/paxton-talarico-houston-campaign-stop-texas-senate-economy-affordability/">Houston Public Media</a>. Also proposes medical debt cancellation and homebuying help <a class="src" href="https://www.dallasnews.com/news/politics/article/talarico-gains-gop-support-unveiling-22371785.php">Dallas Morning News</a>.</p>
+    <p><span class="who">Paxton</span>"Protecting the Texas Promise": a $50,000 deduction for first-time homebuyers, up to $25,000 per person for out-of-pocket medical costs, a $5,000 deduction for health-related spending, doubling the child tax credit, and making "Trump Accounts" permanent <a class="src" href="https://www.fox26houston.com/election/talarico-vs-paxton-who-has-better-plan-lower-costs">FOX 26</a>.</p>
+  </div>
+  <p class="gap">Overlap: both want a larger child tax credit. Contrast: Paxton works through deductions, which help most those with taxable income to deduct against; Talarico works through wages, credits and programs. Neither has published a full cost estimate.</p>
+</div>
+
+<div class="issue">
+  <h3>Health care</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Extend ACA premium subsidies, create a public option, lower drug prices and regulate pharmacy benefit managers <a class="src" href="https://www.fox26houston.com/election/talarico-vs-paxton-who-has-better-plan-lower-costs">FOX 26</a>.</p>
+    <p><span class="who">Paxton</span>The medical-expense deductions above. As attorney general he led the 20-state suit to strike down the whole ACA, which the Supreme Court dismissed 7–2 on standing in 2021 <a class="src" href="https://www.texasstandard.org/?p=121020">Texas Standard</a> <span class="ev ev-record">On the record</span>.</p>
+  </div>
+  <p class="gap">The sharpest structural contrast in the race: expand the ACA framework versus shift support into the tax code.</p>
+</div>
+
+<div class="issue">
+  <h3>Immigration and the border</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Now calls himself a "border security Democrat" and says he criticized Biden on the border <a class="src" href="https://www.foxnews.com/politics/progressive-talarico-knifes-bidens-open-border-tries-moderate-stance-key-issues-texas-senate-race">Fox News</a>. Platform: focus ICE on public safety and national security, ban masked agents, more immigration judges, modernized ports of entry, and legal status for some long-term undocumented residents <a class="src" href="https://www.foxnews.com/politics/dem-texas-senate-candidate-called-illegal-aliens-constituents-shared-how-could-evading-ice.print">Fox News</a>. In January he called for taking ICE money back to communities <a class="src" href="https://www.fortune.com/2026/01/24/texas-senate-debate-democrats-jasmine-crockett-james-talarico-deadly-shooting-minnesota-immigration-agents">Fortune</a>.</p>
+    <p><span class="who">Paxton</span>Close alignment with Trump on enforcement; as attorney general he sued the Biden administration repeatedly over immigration policy <a class="src" href="https://www.pbs.org/newshour/politics/ken-paxton-has-survived-years-of-scandals-can-james-talarico-change-that">PBS/AP</a>. Paxton says Talarico voted against every border security bill <a class="src" href="https://www.foxnews.com/politics/fake-moderate-talarico-texas-surge-tests-paxton-fight-hold-crucial-gop-senate-seat">Fox News</a>; I did not check that against the House journal.</p>
+  </div>
+  <p class="gap">Texas voters are split: ICE is viewed 41% favorable, 46% unfavorable, while 51% agree undocumented immigrants should be deported immediately <a href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP</a>. Both candidates have room to argue they're with the majority.</p>
+</div>
+
+<div class="issue">
+  <h3>Abortion</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Supports codifying Roe-era protections in federal law and has consistently voted against abortion restrictions in the Legislature; frames his support in terms of his faith <a class="src" href="https://www.texastribune.org/2026/07/15/texas-ken-paxton-james-talarico-abortion/">The 19th/Texas Tribune</a>.</p>
+    <p><span class="who">Paxton</span>Among the most anti-abortion officials in the country: sued to block federal emergency-abortion guidance in Texas, threatened hospitals in the Kate Cox case, sued out-of-state providers mailing pills, and urged Congress to override blue-state shield laws. Has not said what he'd pursue in the Senate; Texas Right to Life suggests a 15- or 20-week national limit <a class="src" href="https://www.texastribune.org/2026/07/15/texas-ken-paxton-james-talarico-abortion/">The 19th/Texas Tribune</a>.</p>
+  </div>
+  <p class="gap">Neither campaign is leading with it. 47% of Texas registered voters call themselves pro-choice and 40% pro-life <a href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP</a>.</p>
+</div>
+
+<div class="issue">
+  <h3>Guns</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Campaign site says he'll protect the Second Amendment while reducing gun violence. Voted against permitless carry in 2021; rated F by the NRA <a class="src" href="https://www.aol.com/news/excuse-texan-voters-mistake-james-211829383.html">Daily Caller News Foundation</a>.</p>
+    <p><span class="who">Paxton</span>Rated A by the NRA (same source).</p>
+  </div>
+  <p class="gap">Single-sourced through a partisan outlet citing Vote Smart and an NRA spokesperson. The direction is not in doubt; the specific grades are unverified by me.</p>
+</div>
+
+<div class="issue">
+  <h3>Energy</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Says he'll protect oil and gas jobs and backs an all-of-the-above strategy <a class="src" href="https://www.redriverradio.org/news/2026-05-28/talarico-kicking-off-general-election-campaign-with-east-texas-rally-thursday-night">Red River Radio</a>. In 2020 he predicted the fossil fuel industry wouldn't last (see Tensions).</p>
+    <p><span class="who">Paxton</span>Longtime defender of the oil and gas industry who used his office to fight federal rules <a class="src" href="https://www.eenews.net/articles/senate-hopefuls-preview-energy-fights-in-oil-rich-texas/">E&amp;E News/Politico</a>.</p>
+  </div>
+</div>
+
+<div class="issue">
+  <h3>Elections and voting</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Cites Texas's Republican secretary of state that elections are safe and secure; calls Paxton's fraud prosecutions a witch hunt <a class="src" href="https://www.propublica.org/article/james-talarico-texas-election-law-ken-paxton">ProPublica/Texas Tribune</a>.</p>
+    <p><span class="who">Paxton</span>Has made voter-fraud enforcement a signature: helped oust high-court judges who blocked him from prosecuting election crimes unilaterally and set up a fraud tip line before the primary (same source).</p>
+  </div>
+  <p class="gap">Both now face questions about their own voting addresses. See Tensions.</p>
+</div>
+
+<div class="issue">
+  <h3>Ethics and money in politics</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Would ban super PACs and stock trading by members of Congress; refuses corporate PAC money <a class="src" href="https://www.texastribune.org/2026/02/12/james-talarico-fundraising-2026-seven-million/">Texas Tribune</a>.</p>
+    <p><span class="who">Paxton</span>Casts the cases against him as political attacks. I found no reform platform on ethics from his campaign.</p>
+  </div>
+</div>
+
+<div class="issue">
+  <h3>Relationship to Trump</h3>
+  <div class="cols">
+    <p><span class="who">Talarico</span>Wants tariffs repealed <a class="src" href="https://www.fox26houston.com/election/talarico-vs-paxton-who-has-better-plan-lower-costs">FOX 26</a>; backed impeachment proceedings against former DHS Secretary Kristi Noem in the primary <a class="src" href="https://www.fortune.com/2026/01/24/texas-senate-debate-democrats-jasmine-crockett-james-talarico-deadly-shooting-minnesota-immigration-agents">Fortune</a>.</p>
+    <p><span class="who">Paxton</span>Trump-endorsed and closely aligned on immigration, elections and executive power; Trump has said he'll return to campaign for him <a class="src" href="https://www.wjhg.com/2026/09/10/texas-politics-takes-center-stage-2026-rnc-convention/">Gray DC</a>.</p>
+  </div>
+  <p class="gap">Trump's job approval among Texas registered voters: 43% approve, 51% disapprove <a href="https://texaspolitics.utexas.edu/files/202608_POLL_TOPLINE-c5d4ba53.pdf">UT/TPP</a>.</p>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<section id="tensions">
+<h2>Where each is in tension with his own stated values</h2>
+<div class="prose">
+<p>Each item below measures a candidate against a value <em>he himself</em> has claimed, not against his opponents' values. That rule kept some popular attacks out: for example, the argument that Talarico's support for abortion contradicts his Christianity, or that Paxton's politics contradict someone else's reading of the Gospels. Those are disagreements about theology, not inconsistencies.</p>
+<p>The items differ in kind. Paxton's rest mostly on court records and investigative reporting; several of Talarico's are shifts in position that he partly acknowledges. Two more Paxton items are real but couldn't be tied to a value he has stated himself, so they sit in a separate note below rather than being forced into the format. Don't read the count as a score.</p>
+</div>
+
+<h3>Paxton</h3>
+
+<article class="tension">
+  <h4>Disputes the facts in public, declined to contest them in court</h4>
+  <span class="ev ev-record">On the record</span>
+  <dl>
+    <dt>Stated position</dt><dd>Called the whistleblower judgment ridiculous and not based on the facts or the law, and vowed to appeal <a class="src" href="https://www.cbsnews.com/texas/news/texas-attorney-general-vows-to-appeal-6-7-million-judgment-against-his-office-in-whistleblower-case/">CBS Texas</a>.</dd>
+    <dt>Record</dt><dd>In court, his office stopped contesting the facts, allegations similar to those his lawyers had fought hard during the impeachment trial. The judge found retaliation against four aides who reported him to the FBI and awarded $6.6 million, which taxpayers pay <a class="src" href="https://www.texastribune.org/2025/04/04/ken-paxton-whistleblower-case-judgment/">Texas Tribune</a>. He appealed, then dropped the appeal; plaintiffs' lawyers said conceding let him avoid answering questions under oath <a class="src" href="https://www.texastribune.org/2025/07/03/ken-paxton-attorney-general-whistleblowers-appeal">Texas Tribune</a>.</dd>
+    <dt>His response</dt><dd>Calls it a judgment for baseless claims by rogue employees and blames the House leadership that impeached him.</dd>
+    <dt>How strong</dt><dd>Strong on what happened in court. It does not prove the underlying bribery allegations: he was acquitted of all 16 impeachment articles and federal prosecutors dropped their case. The motive for conceding (avoiding testimony) is the plaintiffs' characterization.</dd>
+  </dl>
+</article>
+
+<article class="tension">
+  <h4>Election-fraud enforcer, questioned voting address</h4>
+  <span class="ev ev-reported">Reported</span>
+  <dl>
+    <dt>Stated value</dt><dd>Strict enforcement of election law, including against voters who misstate their residence; his office publicly warned before the primary that misrepresenting your residence on election records is illegal <a class="src" href="https://www.propublica.org/article/james-talarico-texas-election-law-ken-paxton">ProPublica/Texas Tribune</a>.</dd>
+    <dt>Record</dt><dd>ProPublica and the Texas Tribune found he voted six times over two years while registered at a Collin County home his estranged wife says he hadn't lived in for two years; reporting links him to a Denton County home since February <a class="src" href="https://www.propublica.org/article/james-talarico-texas-election-law-ken-paxton">ProPublica/Texas Tribune</a>.</dd>
+    <dt>His response</dt><dd>His campaign says he's a lawful registered voter and has repeatedly declined detailed questions.</dd>
+    <dt>How strong</dt><dd>Records-based reporting, not adjudicated. An ethics lawyer quoted doubts either candidate committed prosecutable fraud (intent is required) but argues the state's chief election enforcer should be held to a higher standard. Talarico faces a similar finding.</dd>
+  </dl>
+</article>
+
+
+<article class="tension">
+  <h4>Federalism, except on abortion shield laws</h4>
+  <span class="ev ev-interp">Interpretive</span>
+  <dl>
+    <dt>Stated value</dt><dd>Chaired the Republican Attorneys General Association, whose stated mission includes defending federalism, and argued his ACA suit would return health decisions to the states <a class="src" href="https://www.pressreader.com/usa/houston-chronicle/20190709/281487867913806">Houston Chronicle, 2019</a>.</dd>
+    <dt>Record</dt><dd>Signed a letter urging Congress to pass legislation overriding other states' shield laws for abortion providers <a class="src" href="https://www.texastribune.org/2026/07/15/texas-ken-paxton-james-talarico-abortion/">The 19th/Texas Tribune</a>.</dd>
+    <dt>His response</dt><dd>None found. Supporters would say protecting unborn life outranks federalism, which is a coherent position.</dd>
+    <dt>How strong</dt><dd>Facts are solid; whether it's inconsistency depends on how you rank those values.</dd>
+  </dl>
+</article>
+
+<div class="card" style="margin:1rem 0">
+  <h4>Other documented Paxton questions that don't fit the stated-value test</h4>
+  <p class="small"><strong>Financial disclosures</strong> <span class="ev ev-reported">Reported</span> His federal disclosure listed no rental income from properties reporters found listed for rent, omitted mortgages on three Utah resort condos, and valued a land stake at up to $50,000 that his business partner puts near $1 million. Three ethics experts said unreported income would violate federal disclosure law; his campaign calls it manufactured controversy; the Senate Ethics Committee has made no finding <a class="src" href="https://www.propublica.org/article/ken-paxton-senate-financial-disclosures-ethics-law">ProPublica/Texas Tribune</a>.</p>
+  <p class="small"><strong>Adultery allegations</strong> <span class="ev ev-record">On the record</span> <span class="ev ev-disputed">Disputed</span> An extramarital affair was aired in testimony at his 2023 impeachment trial. In July 2025 his wife, state Sen. Angela Paxton, filed for divorce alleging adultery, publicly describing it as on "biblical grounds" <a class="src" href="https://www.kut.org/politics/2025-07-10/state-sen-angela-paxton-files-for-divorce-from-texas-attorney-general-ken-paxton">KUT</a>; he denied the petition's allegations in a court filing <a class="src" href="https://spectrumlocalnews.com/tx/south-texas-el-paso/politics/2025/12/19/ken-and-angela-paxtons-agree-to-unseal-divorce-records">Spectrum News</a>. Critics frame this as at odds with his faith-based politics, but I didn't find a specific statement of his on marriage to measure it against. I also didn't confirm whether the divorce is final.</p>
+</div>
+
+<h3>Talarico</h3>
+
+<article class="tension">
+  <h4>Against big money, backed by big money</h4>
+  <span class="ev ev-record">On the record</span> <span class="ev ev-interp">Interpretive</span>
+  <dl>
+    <dt>Stated value</dt><dd>Campaigns against billionaire influence and dark money and would ban super PACs <a class="src" href="https://www.texastribune.org/2026/02/20/texas-senate-dark-money-superpacs-talarico-hunt-crockett-paxton-cornyn/">Texas Tribune</a>; pledged a positive primary campaign.</dd>
+    <dt>Record</dt><dd>Lone Star Rising, a super PAC backing him, raised around $9 million from wealthy donors, nearly half via a group that doesn't disclose donors, with Reid Hoffman its largest individual donor <a class="src" href="https://www.statesman.com/news/politics/state/article/james-talarico-us-senate-pac-billionaires-22235242.php">Statesman</a>. It ran negative ads against Crockett while his own ads stayed positive <a class="src" href="https://www.texastribune.org/2026/02/12/james-talarico-fundraising-2026-seven-million/">Texas Tribune</a>. He had also accepted $54,500 from an Adelson-linked PAC in an earlier cycle (single-sourced, via a fact-check aggregator citing the Austin Independent).</dd>
+    <dt>His response</dt><dd>He can't legally control super PACs, won't "unilaterally disarm," and would ban them if elected; his campaign says it had no involvement in the ads <a class="src" href="https://www.texastribune.org/2026/02/20/texas-senate-dark-money-superpacs-talarico-hunt-crockett-paxton-cornyn/">Texas Tribune</a>.</dd>
+    <dt>How strong</dt><dd>The money is documented. Whether it's hypocrisy depends on whether you accept the "don't disarm alone" argument, which reformers in both parties make. He has not publicly asked the PAC to stop.</dd>
+  </dl>
+</article>
+
+<article class="tension">
+  <h4>Accused Paxton of voter fraud, same issue in his own record</h4>
+  <span class="ev ev-reported">Reported</span>
+  <dl>
+    <dt>Stated value</dt><dd>Said Paxton "was committing voter fraud the whole time" over his voting address <a class="src" href="https://www.propublica.org/article/james-talarico-texas-election-law-ken-paxton">ProPublica/Texas Tribune</a>.</dd>
+    <dt>Record</dt><dd>Bought a home in June 2022 but kept his parents' address, about six miles away, on his registration until September 2024, voting in five elections in that span (same source). The same reporting found records supporting his residency for his 2022 House eligibility, contradicting an earlier conservative-outlet claim.</dd>
+    <dt>His response</dt><dd>Declined to say when he moved in, citing safety threats, and called the questions a Paxton deflection.</dd>
+    <dt>How strong</dt><dd>Same evidentiary footing as the Paxton item. A political scientist quoted says it supports a hypocrisy charge against either man.</dd>
+  </dl>
+</article>
+
+<article class="tension">
+  <h4>From cutting ICE money to "border security Democrat"</h4>
+  <span class="ev ev-record">On the record</span> <span class="ev ev-interp">Interpretive</span>
+  <dl>
+    <dt>Stated value</dt><dd>Now: a border security Democrat who wants a sane, orderly process and more Border Patrol agents; his campaign says he has never supported abolishing ICE <a class="src" href="https://www.foxnews.com/politics/progressive-talarico-knifes-bidens-open-border-tries-moderate-stance-key-issues-texas-senate-race">Fox News</a>.</dd>
+    <dt>Record</dt><dd>At the January primary debate he was more adamant than Crockett about cutting ICE funding and said to "take that money back" <a class="src" href="https://www.fortune.com/2026/01/24/texas-senate-debate-democrats-jasmine-crockett-james-talarico-deadly-shooting-minnesota-immigration-agents">Fortune</a>. He also led a "Stop ICE" rally that month, per a conservative outlet I couldn't independently confirm.</dd>
+    <dt>His response</dt><dd>His platform pairs enforcement with accountability: redirect ICE toward public-safety cases, not abolish it.</dd>
+    <dt>How strong</dt><dd>Cutting funding is not abolition, so "flip-flop" overstates it. The change in emphasis between the primary and the general is real and recorded.</dd>
+  </dl>
+</article>
+
+<article class="tension">
+  <h4>"Proud capitalist" and oil and gas, after 2020 remarks</h4>
+  <span class="ev ev-reported">Reported</span>
+  <dl>
+    <dt>Stated value</dt><dd>His campaign now calls him a proud capitalist who supports oil and gas <a class="src" href="https://www.foxnews.com/politics/texas-dems-proud-capitalist-pitch-collides-resurfaced-call-dismantle-capitalism">Fox News</a>.</dd>
+    <dt>Record</dt><dd>On a 2020 Sierra Club video call, first reported by CNN, he linked climate change, white supremacy and capitalism as systems to be dismantled and said the fossil fuel industry wouldn't last (same source).</dd>
+    <dt>His response</dt><dd>His campaign told CNN the past comments "missed the mark" <a class="src" href="https://www.washingtonexaminer.com/?p=4709143">Washington Examiner, citing CNN</a>.</dd>
+    <dt>How strong</dt><dd>He partly concedes it. I saw only secondary accounts, not CNN's recording.</dd>
+  </dl>
+</article>
+
+<article class="tension">
+  <h4>Positive campaign, the "mediocre" episode</h4>
+  <span class="ev ev-disputed">Disputed</span>
+  <dl>
+    <dt>Stated value</dt><dd>Said he would never attack Colin Allred on the basis of race and that he respects him.</dd>
+    <dt>Record</dt><dd>A TikTok creator said he privately called Allred a "mediocre Black man." He called that a mischaracterization but acknowledged calling Allred's campaigning mediocre <a class="src" href="https://www.texastribune.org/2026/02/02/texas-us-senate-democratic-primary-colin-allred-james-talarico-mediocre-black-man-tiktok/">Texas Tribune</a>.</dd>
+    <dt>His response</dt><dd>As above.</dd>
+    <dt>How strong</dt><dd>Weak as evidence: one person's account of a private conversation, partly denied. Included for completeness because it circulated widely.</dd>
+  </dl>
+</article>
+</section>
+
+<!-- ============================================================ -->
+<section id="claims">
+<h2>Campaign claims checked</h2>
+<p class="prose muted small sans">A sample of attack lines from both sides, checked against the best source I could reach.</p>
+<div class="table-scroll">
+<table class="claims">
+  <thead><tr><th>Claim</th><th>Who</th><th>What the evidence shows</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>Talarico "voted for a state income tax."</td><td>Paxton</td><td>He did not vote for an income or estate tax. He opposed constitutional amendments that permanently bar the state from adopting them <a class="src" href="https://www.houstonpublicmedia.org/articles/news/politics/election-2026/2026/08/10/559012/james-talarico-ken-paxton-poll-houston/">Houston Public Media</a>.</td><td class="verdict">Misleading</td></tr>
+    <tr><td>Talarico is the only one in the race who committed voter fraud.</td><td>Paxton campaign</td><td>No charge or finding. The 2022 residency claim is contradicted by records; the later address issue mirrors Paxton's own <a class="src" href="https://www.propublica.org/article/james-talarico-texas-election-law-ken-paxton">ProPublica/Texas Tribune</a>.</td><td class="verdict">Not supported</td></tr>
+    <tr><td>Paxton was committing voter fraud.</td><td>Talarico</td><td>The address discrepancy is documented; fraud requires intent, and no one has charged or found it. An ethics lawyer quoted doubts it's prosecutable.</td><td class="verdict">Overstated</td></tr>
+    <tr><td>Talarico wants to abolish ICE.</td><td>RNC, Paxton allies</td><td>I found calls to cut and redirect ICE funding, not to abolish the agency; his campaign denies it. I can't rule out a statement I didn't find.</td><td class="verdict">Not supported by what I found</td></tr>
+    <tr><td>Paxton is "a multimillionaire who owns 15 properties."</td><td>Talarico campaign</td><td>Reporting documents more than a dozen properties in five states and a reported net worth of $1 million–$27 million <a class="src" href="https://www.propublica.org/article/ken-paxton-senate-financial-disclosures-ethics-law">ProPublica/Texas Tribune</a>. The exact count of 15 is unverified.</td><td class="verdict">Broadly supported</td></tr>
+    <tr><td>Paxton has never been convicted.</td><td>Paxton allies</td><td>Correct. Acquitted by the Senate; federal case dropped; securities charges dismissed in 2025 after he paid about $271,000 in restitution and did community service under a pretrial agreement with no plea <a class="src" href="https://www.texastribune.org/2024/03/26/ken-paxton-plea-deal-securities-fraud-felony/">Texas Tribune</a> <a class="src" href="https://www.fox26houston.com/news/texas-ken-paxton-felony-securities-fraud-dismissed">FOX 26</a>.</td><td class="verdict">Accurate</td></tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<section id="method" class="method">
+<h2>What I did and didn't verify</h2>
+<div class="prose">
+<h3>Read at the source</h3>
+<ul>
+  <li>The UT/Texas Politics Project August 2026 topline (poll numbers, trust ratings, issue priorities, party ID).</li>
+  <li>Emerson's August release.</li>
+  <li>Two ProPublica/Texas Tribune investigations in full: the voting-address story and the financial-disclosure story. These are the root source for most of the address and disclosure material; other outlets repeating them are not independent confirmation.</li>
+  <li>The FOX 26 side-by-side of both economic plans, built from the campaigns' own releases, and The 19th/Texas Tribune abortion piece in full.</li>
+</ul>
+<h3>Secondary only</h3>
+<ul>
+  <li>Most polls, all fundraising figures (I did not open FEC filings), primary and runoff results, and the whistleblower and securities case histories come from news reports, not the underlying filings.</li>
+  <li>NRA grades and Talarico's 2021 gun votes: single-sourced through a partisan outlet.</li>
+  <li>Talarico's 2020 Sierra Club remarks and the "missed the mark" response: seen only through Fox News and the Washington Examiner citing CNN.</li>
+  <li>The Adelson-linked PAC contribution: single-sourced through a fact-check aggregator.</li>
+</ul>
+<h3>Not researched, deliberately left out, or open</h3>
+<ul>
+  <li>Whether the Paxton divorce is final.</li>
+  <li>Whether any debate is scheduled. Talarico has challenged Paxton to three, including one on Fox News; I found no acceptance.</li>
+  <li>Paxton's stance on school vouchers and Talarico's recorded votes on them; the Ten Commandments law beyond Talarico's opposition <a class="src" href="https://www.kwtx.com/2025/05/02/testimony-heard-texas-bill-requiring-10-commandments-classrooms/">KWTX</a>.</li>
+  <li>Attack lines I saw but didn't investigate: a plea deal Paxton's office reached in a child sex-abuse case, a Texas Tech donor story, and Republican ads on Talarico's past remarks about gender and religion. None is scored here.</li>
+  <li>Cost estimates for either economic plan; neither campaign has published one.</li>
+</ul>
+</div>
+</section>
+
+<footer>
+  Prepared September 28, 2026. Positions and polls in a live race change weekly; re-check anything you plan to rely on after mid-October. Evidence marks describe the sourcing, not how damaging an item is.
+</footer>
+</div>
+</body>
+</html>
